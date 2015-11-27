@@ -12,6 +12,8 @@
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 #define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/255.0]
+#define   kWIN_WIDTH  [[UIScreen mainScreen] bounds].size.width
+#define   kWIN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 
 @interface DashboardViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
@@ -60,16 +62,37 @@
 //代理方法, 控制每个段的边距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(20, 20, 20, 20);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        return UIEdgeInsetsMake(10, 10, 10, 10);
+
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return UIEdgeInsetsMake(20, 20, 20, 20);
+
+    }
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 //控制每个item的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if(indexPath.section == 0)
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        return CGSizeMake(150, 150);
+        float heigh = (kWIN_WIDTH - 40)/2;
+        if(indexPath.section == 0)
+        {
+            return CGSizeMake(heigh, heigh);
+        }
+        
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        float heigh = (kWIN_WIDTH - 80)/3;
+        if (heigh>200) {
+            heigh = 200;
+        }
+        if(indexPath.section == 0)
+        {
+            return CGSizeMake(heigh, heigh);
+        }
     }
 
     return CGSizeZero;
@@ -122,7 +145,7 @@
     
     //创建的时候与tableView相比, 多了一个参数布局对象
     //集合视图布局是十分自由的, 需要使用布局对象控制
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 20, kWIN_WIDTH, kWIN_HEIGHT-20) collectionViewLayout:layout];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.backgroundColor = [UIColor whiteColor];
