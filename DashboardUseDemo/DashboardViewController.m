@@ -20,7 +20,7 @@
     UICollectionView *_collectionView;
     NSMutableArray *_dashboardDataArray;
 }
-
+@property (nonatomic,strong) NSTimer *refreshTimer;
 @end
 
 @implementation DashboardViewController
@@ -32,6 +32,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self createCollectionView];
     [self startDowmloadData];
+    _refreshTimer =[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(startDowmloadData) userInfo:nil repeats:YES];
 }
 
 - (void)startDowmloadData
@@ -43,7 +44,7 @@
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSArray *dataArr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        
+        [_dashboardDataArray removeAllObjects];
         for (NSArray *a in dataArr) {
             if (![a[0] isKindOfClass:[NSNull class]]) {
                  [_dashboardDataArray addObject:a];
@@ -78,14 +79,14 @@
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        float heigh = (kWIN_WIDTH - 40)/2;
+        float heigh = (kWIN_WIDTH - 30)/2;
         if(indexPath.section == 0)
         {
             return CGSizeMake(heigh, heigh);
         }
         
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        float heigh = (kWIN_WIDTH - 80)/3;
+        float heigh = (kWIN_WIDTH - 50)/3;
         if (heigh>200) {
             heigh = 200;
         }
@@ -155,6 +156,22 @@
     //注意: 必须注册, 否则会崩溃的
     [_collectionView registerClass:[DashboardCell class] forCellWithReuseIdentifier:@"DashboardCell"];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (_refreshTimer) {
+        [_refreshTimer setFireDate:[NSDate distantPast]];
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    if (_refreshTimer) {
+        //        [_refreshTimer invalidate];
+        //        _refreshTimer = nil;
+        [_refreshTimer setFireDate:[NSDate distantFuture]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
