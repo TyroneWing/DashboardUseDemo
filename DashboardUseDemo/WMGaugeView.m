@@ -227,6 +227,12 @@
         }
         break;
             
+        case WMGaugeViewInnerBackgroundStyleNone:
+        {
+        
+        }
+        break;
+            
         default:
         break;
     }
@@ -235,11 +241,11 @@
 - (void)drawText:(CGContextRef)context
 {
     CGContextSetShadow(context, CGSizeMake(0.05, 0.05), 2.0);
-    UIFont* font = [UIFont fontWithName:@"Helvetica" size:0.08];
-    NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : [UIColor whiteColor] };
+    UIFont* font = [UIFont fontWithName:@"Helvetica" size:0.07];
+    NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : [UIColor blackColor] };
     NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:_unitOfMeasurement attributes:stringAttrs];
     CGSize fontWidth = [_unitOfMeasurement sizeWithAttributes:stringAttrs];
-    [attrStr drawAtPoint:CGPointMake(0.5 - fontWidth.width / 2.0, 0.6)];
+    [attrStr drawAtPoint:CGPointMake(0.5 - fontWidth.width / 2.0, 0.3)];
 }
 
 - (void)drawScale:(CGContextRef)context
@@ -261,8 +267,8 @@
         
         float value = [self valueForTick:i];
         float div = (_maxValue - _minValue) / _scaleDivisions;
-        float mod = (int)value % (int)div;
-        float mad = value/_scaleDivisions;
+//        float mod = (int)value % (int)div;
+//        float mad = value/_scaleDivisions;
         if (i%(int)_scaleDivisions == 0)
 //        if ((abs(mod - 0) < 0.000001) || (abs(mod - div) < 0.000001))
         
@@ -275,8 +281,8 @@
             CGContextMoveToPoint(context, 0.5, y1);
             CGContextAddLineToPoint(context, 0.5, y3);
             CGContextStrokePath(context);
-            
             NSString *valueString = [NSString stringWithFormat:@"%0.0f",value];
+            
             UIFont* font = _scaleFont?_scaleFont:[UIFont fontWithName:@"Helvetica-Bold" size:0.05];
             NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : color };
             NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:valueString attributes:stringAttrs];
@@ -382,6 +388,17 @@
 
 - (void)drawNeedle:(CGContextRef)context
 {
+
+    CGContextSetShadow(context, CGSizeMake(0.05, 0.05), 2.0);
+    UIFont* font = [UIFont fontWithName:@"Helvetica" size:0.08];
+    NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : [UIColor blackColor] };
+    NSString *valueStr = [NSString stringWithFormat:@"%.2f",_value];
+    NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:valueStr attributes:stringAttrs];
+    CGSize fontWidth = [_unitOfMeasurement sizeWithAttributes:stringAttrs];
+    [attrStr drawAtPoint:CGPointMake(0.5 - fontWidth.width / 2.0, 0.65)];
+    
+    
+    
     [self rotateContext:context fromCenter:center withAngle:DEGREES_TO_RADIANS(180 + _scaleStartAngle + (currentValue - _minValue) / (_maxValue - _minValue) * (_scaleEndAngle - _scaleStartAngle))];
     
     switch (_needleStyle)

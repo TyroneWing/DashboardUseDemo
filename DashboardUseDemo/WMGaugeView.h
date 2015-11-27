@@ -32,7 +32,8 @@ WMGaugeViewNeedleScrewStyle;
 typedef enum
 {
     WMGaugeViewInnerBackgroundStyleGradient,
-    WMGaugeViewInnerBackgroundStyleFlat
+    WMGaugeViewInnerBackgroundStyleFlat,
+    WMGaugeViewInnerBackgroundStyleNone
 }
 WMGaugeViewInnerBackgroundStyle;
 

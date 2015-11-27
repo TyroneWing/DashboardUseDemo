@@ -68,20 +68,20 @@
     
     _gaugeView = [[WMGaugeView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
     _gaugeView.backgroundColor = [UIColor whiteColor];
-    _gaugeView.maxValue = 220.0;
-    _gaugeView.minValue = 10.0;
-    
+    _gaugeView.scaleSubdivisions = 14;
+    _gaugeView.maxValue = 14.0;
+    _gaugeView.minValue = 0;
     _gaugeView.showRangeLabels = YES;
-    _gaugeView.rangeValues = @[ @50,     @170,                                            @220.0              ];
-    _gaugeView.rangeColors = @[ RGB(34, 189, 190),  RGB(71, 158, 138),  RGB(207, 99, 108),  ];
+    _gaugeView.rangeValues = @[ @5,     @9,                                            @14              ];
+    _gaugeView.rangeColors = @[ RGB(34, 189, 190),  RGB(71, 158, 238),  RGB(207, 99, 108),  ];
     //    _gaugeView.rangeLabels = @[ @"VERY LOW",                      @"OK"    ,@"12"    ];
-    _gaugeView.unitOfMeasurement = @"psi";
+    _gaugeView.unitOfMeasurement = @"PH值";
     _gaugeView.showUnitOfMeasurement = YES;
     
-    [_gaugeView setValue:200.0 animated:NO];
+    [_gaugeView setValue:9.75 animated:NO];
     
     
-    _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleGradient;
+    _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleNone;
     _gaugeView.needleScrewStyle = WMGaugeViewNeedleScrewStyleGradient;
     _gaugeView.needleStyle = WMGaugeViewNeedleStyle3D;
     _gaugeView.scalesubdivisionsaligment =  WMGaugeViewSubdivisionsAlignmentBottom;
