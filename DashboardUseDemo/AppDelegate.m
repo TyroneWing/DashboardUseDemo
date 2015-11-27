@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "DashboardViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    ViewController *vc = [[ViewController alloc] init];
+//    self.window.rootViewController = vc;
+    
+    DashboardViewController *dbVC = [[DashboardViewController alloc] init];
+    self.window.rootViewController = dbVC;
+    
     return YES;
 }
 

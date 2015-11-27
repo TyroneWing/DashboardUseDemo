@@ -81,6 +81,8 @@ WMGaugeViewInnerBackgroundStyle;
 @property (nonatomic, strong) NSArray *rangeLabels;
 
 @property (nonatomic, strong) NSString *unitOfMeasurement;
+@property (nonatomic, strong) NSString *valueString;
+
 @property (nonatomic) bool showUnitOfMeasurement;
 
 - (void)setValue:(float)value animated:(BOOL)animated;

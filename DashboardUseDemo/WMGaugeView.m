@@ -246,6 +246,9 @@
     NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:_unitOfMeasurement attributes:stringAttrs];
     CGSize fontWidth = [_unitOfMeasurement sizeWithAttributes:stringAttrs];
     [attrStr drawAtPoint:CGPointMake(0.5 - fontWidth.width / 2.0, 0.3)];
+    
+    
+    
 }
 
 - (void)drawScale:(CGContextRef)context
@@ -392,9 +395,9 @@
     CGContextSetShadow(context, CGSizeMake(0.05, 0.05), 2.0);
     UIFont* font = [UIFont fontWithName:@"Helvetica" size:0.08];
     NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : [UIColor blackColor] };
-    NSString *valueStr = [NSString stringWithFormat:@"%.2f",_value];
-    NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:valueStr attributes:stringAttrs];
-    CGSize fontWidth = [_unitOfMeasurement sizeWithAttributes:stringAttrs];
+//    NSString *valueStr = [NSString stringWithFormat:@"%.2f",_value];
+    NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:_valueString attributes:stringAttrs];
+    CGSize fontWidth = [_valueString sizeWithAttributes:stringAttrs];
     [attrStr drawAtPoint:CGPointMake(0.5 - fontWidth.width / 2.0, 0.65)];
     
     
@@ -576,7 +579,7 @@
         _value = _minValue;
     else
         _value = value;
-    
+    _valueString = [NSString stringWithFormat:@"%.2f",value];
     needleVelocity = 0.0;
     needleAcceleration = 0.0;
     needleLastMoved = -1;

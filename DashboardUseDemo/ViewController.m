@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.backgroundColor = [UIColor whiteColor];
     
 //    @property (nonatomic) bool showInnerBackground;
 //    @property (nonatomic) bool showInnerRim;
@@ -72,13 +72,13 @@
     _gaugeView.maxValue = 14.0;
     _gaugeView.minValue = 0;
     _gaugeView.showRangeLabels = YES;
-    _gaugeView.rangeValues = @[ @5,     @9,                                            @14              ];
-    _gaugeView.rangeColors = @[ RGB(34, 189, 190),  RGB(71, 158, 238),  RGB(207, 99, 108),  ];
+    _gaugeView.rangeValues = @[ @5,@9,@14];
+    _gaugeView.rangeColors = @[ RGB(34, 189, 190),  RGB(71, 158, 238),  RGB(207, 99, 108),RGB(255, 0, 0),RGB(147, 0, 0),RGB(0, 0, 0)];
     //    _gaugeView.rangeLabels = @[ @"VERY LOW",                      @"OK"    ,@"12"    ];
     _gaugeView.unitOfMeasurement = @"PH值";
     _gaugeView.showUnitOfMeasurement = YES;
     
-    [_gaugeView setValue:9.75 animated:NO];
+    [_gaugeView setValue:9.28 animated:NO];
     
     
     _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleNone;
