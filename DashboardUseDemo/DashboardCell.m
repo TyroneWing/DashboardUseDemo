@@ -27,11 +27,11 @@
     _gaugeView.rangeColors = @[ RGB(34, 189, 190),  RGB(71, 158, 238),  RGB(207, 99, 108),RGB(255, 0, 0),RGB(147, 0, 0),RGB(0, 0, 0)];
     _gaugeView.backgroundColor = [UIColor clearColor];
     _gaugeView.showUnitOfMeasurement = YES;
-    _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleNone;
-
-    _gaugeView.needleStyle = WMGaugeViewNeedleStyle3D;
-    _gaugeView.scalesubdivisionsaligment =  WMGaugeViewSubdivisionsAlignmentCenter;
-    
+//    _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleNone;
+//
+//    _gaugeView.needleStyle = WMGaugeViewNeedleStyle3D;
+//    _gaugeView.scalesubdivisionsaligment =  WMGaugeViewSubdivisionsAlignmentCenter;
+//    
     [self.contentView addSubview:_gaugeView];
 }
 @end

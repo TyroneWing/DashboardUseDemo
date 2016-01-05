@@ -43,13 +43,13 @@ WMGaugeViewInnerBackgroundStyle;
 @property (nonatomic) bool showInnerRim;
 @property (nonatomic) CGFloat innerRimWidth;
 @property (nonatomic) CGFloat innerRimBorderWidth;
-@property (nonatomic) WMGaugeViewInnerBackgroundStyle innerBackgroundStyle;
+//@property (nonatomic) WMGaugeViewInnerBackgroundStyle innerBackgroundStyle;
 
 @property (nonatomic) CGFloat needleWidth;
 @property (nonatomic) CGFloat needleHeight;
 @property (nonatomic) CGFloat needleScrewRadius;
-@property (nonatomic) WMGaugeViewNeedleStyle needleStyle;
-@property (nonatomic) WMGaugeViewNeedleScrewStyle needleScrewStyle;
+//@property (nonatomic) WMGaugeViewNeedleStyle needleStyle;
+//@property (nonatomic) WMGaugeViewNeedleScrewStyle needleScrewStyle;
 
 @property (nonatomic) CGFloat scalePosition;
 @property (nonatomic) CGFloat scaleStartAngle;
@@ -57,7 +57,7 @@ WMGaugeViewInnerBackgroundStyle;
 @property (nonatomic) CGFloat scaleDivisions;
 @property (nonatomic) CGFloat scaleSubdivisions;
 @property (nonatomic) bool showScaleShadow;
-@property (nonatomic) WMGaugeViewSubdivisionsAlignment scalesubdivisionsaligment;
+//@property (nonatomic) WMGaugeViewSubdivisionsAlignment scalesubdivisionsaligment;
 @property (nonatomic) CGFloat scaleDivisionsLength;
 @property (nonatomic) CGFloat scaleDivisionsWidth;
 @property (nonatomic) CGFloat scaleSubdivisionsLength;
@@ -85,6 +85,7 @@ WMGaugeViewInnerBackgroundStyle;
 
 @property (nonatomic) bool showUnitOfMeasurement;
 
-- (void)setValue:(float)value animated:(BOOL)animated;
+//- (void)setValue:(float)value animated:(BOOL)animated;
+- (void)setValue:(double)value animated:(BOOL)animated duration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
 
 @end

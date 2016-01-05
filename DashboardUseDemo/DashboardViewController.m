@@ -32,7 +32,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self createCollectionView];
     [self startDowmloadData];
-    _refreshTimer =[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(startDowmloadData) userInfo:nil repeats:YES];
+//    _refreshTimer =[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(startDowmloadData) userInfo:nil repeats:YES];
 }
 
 - (void)startDowmloadData
@@ -52,7 +52,7 @@
         }
        
         
-        NSLog(@"_dashboardDataArray = %@",_dashboardDataArray);
+//        NSLog(@"_dashboardDataArray = %@",_dashboardDataArray);
         [_collectionView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -129,7 +129,12 @@
         cell.gaugeView.rangeValues = @[@20,@80,@100];
         cell.gaugeView.rangeLabels = @[ @"LOW",@"OK",@"Exceeding"];
         cell.gaugeView.unitOfMeasurement = arr[0];
-        [cell.gaugeView setValue:[arr[1] doubleValue] animated:NO];
+//        [cell.gaugeView setValue:[arr[1] doubleValue] animated:NO];
+        
+        
+//        [cell.gaugeView setValue:[arr[1] doubleValue] animated:YES duration:2 completion:^(BOOL finished) {
+//            
+//        }];
 
     }
     cell.backgroundColor = [UIColor whiteColor];

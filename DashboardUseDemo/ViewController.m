@@ -69,24 +69,48 @@
     _gaugeView = [[WMGaugeView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
     _gaugeView.backgroundColor = [UIColor whiteColor];
     _gaugeView.scaleSubdivisions = 14;
-    _gaugeView.maxValue = 14.0;
+    _gaugeView.maxValue = 100.0;
     _gaugeView.minValue = 0;
     _gaugeView.showRangeLabels = YES;
-    _gaugeView.rangeValues = @[ @5,@9,@14];
+    _gaugeView.rangeValues = @[ @20,@60,@100];
     _gaugeView.rangeColors = @[ RGB(34, 189, 190),  RGB(71, 158, 238),  RGB(207, 99, 108),RGB(255, 0, 0),RGB(147, 0, 0),RGB(0, 0, 0)];
     //    _gaugeView.rangeLabels = @[ @"VERY LOW",                      @"OK"    ,@"12"    ];
     _gaugeView.unitOfMeasurement = @"PH值";
     _gaugeView.showUnitOfMeasurement = YES;
     
-    [_gaugeView setValue:9.28 animated:NO];
+//    [_gaugeView setValue:9.28 animated:NO];
     
+    [_gaugeView setValue:2.3 animated:YES duration:1 completion:^(BOOL finished) {
+        
+    }];
     
-    _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleNone;
-    _gaugeView.needleScrewStyle = WMGaugeViewNeedleScrewStyleGradient;
-    _gaugeView.needleStyle = WMGaugeViewNeedleStyle3D;
-    _gaugeView.scalesubdivisionsaligment =  WMGaugeViewSubdivisionsAlignmentBottom;
+//    _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleNone;
+//    _gaugeView.needleScrewStyle = WMGaugeViewNeedleScrewStyleGradient;
+//    _gaugeView.needleStyle = WMGaugeViewNeedleStyle3D;
+//    _gaugeView.scalesubdivisionsaligment =  WMGaugeViewSubdivisionsAlignmentBottom;
     [self.view addSubview:_gaugeView];
+    
+    
+    
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    testBtn.frame = CGRectMake(30, 300, 100, 30);
+    [testBtn setTitle:@"change" forState:UIControlStateNormal];
+    testBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [testBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [testBtn addTarget:self action:@selector(testBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:testBtn];
 }
+
+
+
+
+- (void)testBtnClick:(UIButton *)btn
+{
+    [_gaugeView setValue:arc4random()%100 animated:YES duration:1 completion:^(BOOL finished) {
+        
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
