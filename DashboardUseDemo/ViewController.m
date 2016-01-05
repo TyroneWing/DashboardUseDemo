@@ -99,16 +99,22 @@
     [testBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [testBtn addTarget:self action:@selector(testBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:testBtn];
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(changeValue) userInfo:nil repeats:YES];
 }
 
 
-
-
-- (void)testBtnClick:(UIButton *)btn
+- (void)changeValue
 {
     [_gaugeView setValue:arc4random()%100 animated:YES duration:1 completion:^(BOOL finished) {
         
     }];
+}
+
+- (void)testBtnClick:(UIButton *)btn
+{
+    [self changeValue];
 }
 
 

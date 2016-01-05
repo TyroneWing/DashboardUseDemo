@@ -132,9 +132,9 @@
 //        [cell.gaugeView setValue:[arr[1] doubleValue] animated:NO];
         
         
-//        [cell.gaugeView setValue:[arr[1] doubleValue] animated:YES duration:2 completion:^(BOOL finished) {
-//            
-//        }];
+        [cell.gaugeView setValue:[arr[1] doubleValue] animated:YES duration:1.5 completion:^(BOOL finished) {
+            
+        }];
 
     }
     cell.backgroundColor = [UIColor whiteColor];
