@@ -66,34 +66,31 @@
 //    @property (nonatomic) bool showUnitOfMeasurement;
     
     
-    _gaugeView = [[WMGaugeView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
+    _gaugeView = [[WMGaugeView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-200)/2, 50, 200, 200)];
     _gaugeView.backgroundColor = [UIColor whiteColor];
-    _gaugeView.scaleSubdivisions = 14;
+    _gaugeView.scaleSubdivisions = 10;
     _gaugeView.maxValue = 100.0;
     _gaugeView.minValue = 0;
     _gaugeView.showRangeLabels = YES;
     _gaugeView.rangeValues = @[ @20,@60,@100];
     _gaugeView.rangeColors = @[ RGB(34, 189, 190),  RGB(71, 158, 238),  RGB(207, 99, 108),RGB(255, 0, 0),RGB(147, 0, 0),RGB(0, 0, 0)];
     //    _gaugeView.rangeLabels = @[ @"VERY LOW",                      @"OK"    ,@"12"    ];
-    _gaugeView.unitOfMeasurement = @"PH值";
+    _gaugeView.unitOfMeasurement = @"浑浊度";
     _gaugeView.showUnitOfMeasurement = YES;
     
 //    [_gaugeView setValue:9.28 animated:NO];
     
-    [_gaugeView setValue:2.3 animated:YES duration:1 completion:^(BOOL finished) {
+    [_gaugeView setValue:23 animated:YES duration:1 completion:^(BOOL finished) {
         
     }];
     
-//    _gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleNone;
-//    _gaugeView.needleScrewStyle = WMGaugeViewNeedleScrewStyleGradient;
-//    _gaugeView.needleStyle = WMGaugeViewNeedleStyle3D;
-//    _gaugeView.scalesubdivisionsaligment =  WMGaugeViewSubdivisionsAlignmentBottom;
     [self.view addSubview:_gaugeView];
     
     
     
     UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    testBtn.frame = CGRectMake(30, 300, 100, 30);
+    testBtn.frame = CGRectMake((self.view.bounds.size.width-100)/2, 300, 100, 30);
+    testBtn.backgroundColor = RGB(95,177,237);
     [testBtn setTitle:@"change" forState:UIControlStateNormal];
     testBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [testBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -101,13 +98,13 @@
     [self.view addSubview:testBtn];
     
     
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(changeValue) userInfo:nil repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(changeValue) userInfo:nil repeats:YES];
 }
 
 
 - (void)changeValue
 {
-    [_gaugeView setValue:arc4random()%100 animated:YES duration:1 completion:^(BOOL finished) {
+    [_gaugeView setValue:arc4random()%100 animated:YES duration:1.5 completion:^(BOOL finished) {
         
     }];
 }
